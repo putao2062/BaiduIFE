@@ -1,0 +1,166 @@
+
+body {
+  background: #202020;
+  color: #fff;
+}
+article {
+  margin: 0 auto;
+  padding: 2em 1em;
+  width: 1200px;
+}
+article section > div {
+  /* 图片背景容器 内容水平垂直居中 */
+  position: relative;
+  display: table-cell;
+  width: 450px;
+  height: 250px;
+  background: #fff;
+  vertical-align: middle;
+  text-align: center;
+}
+article section > div img {
+  /* 图片背景垂直居中 */
+  vertical-align: middle;
+  -webkit-transition: all 1s;
+}
+article section div.box {
+  /* 文本盒容器内水平垂直居中 */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  margin: auto;
+  width: 276px;
+  height: 158px;
+  -webkit-transition: padding-top 0.5s ease;
+  /* outline: 1px solid black; */
+}
+article section div.box p {
+  /* 不显示文字 */
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease;
+}
+article section div.box p:first-child {
+  /* 文字渐变背景 */
+  font-size: 22px;
+  background: linear-gradient(90deg, #d1528e 0%, #8eb5bf 25%, #d1528e 50%, #8eb5bf 75%, #d1528e 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: streamer 1s infinite linear;
+}
+article section div.box p:last-child a {
+  /* 链接变色前 */
+  font-weight: bold;
+  text-decoration: none;
+  color: #6abc8e;
+}
+article section div.box p:last-child:hover a {
+  /* 链接变色 */
+  color: #3079c8;
+  cursor: pointer;
+}
+article section:first-of-type > div:hover div.box {
+  /* 文字上移 */
+  padding-top: 32px;
+}
+article section:first-of-type > div:hover img {
+  /* 图片模糊 */
+  filter: url(../images/blur.svg#blur);
+  /* FireFox, Chrome, Opera */
+  -webkit-filter: blur(10px);
+  /* Chrome, Opera */
+  -moz-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
+  /* IE6~IE9 */
+}
+article section:first-of-type > div:hover p {
+  /* 显示文字 */
+  opacity: 1;
+}
+article section:first-of-type div.box {
+  padding-top: 40px;
+  width: 276px;
+  height: 118px;
+}
+article section:first-of-type div.box::before {
+  /* css线条动画 */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  border-style: solid;
+  border-width: 4px 0px;
+  border-color: #f9f2ed;
+  -webkit-transform: scaleX(0);
+  -webkit-transition: transform 1s;
+}
+article section:first-of-type > div:hover div.box::before {
+  -webkit-transform: scaleX(1);
+}
+article section:first-of-type div.box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  border-style: solid;
+  border-width: 0px 2px;
+  border-color: #f9f2ed;
+  -webkit-transform: scaleY(0);
+  -webkit-transition: transform 1s;
+}
+article section:first-of-type > div:hover div.box::after {
+  /* css线条动画样式结束 */
+  -webkit-transform: scaleY(1);
+}
+#topline,
+#bottomline {
+  animation: linemoveH 1s infinite;
+}
+#leftline,
+#rightline {
+  animation: linemoveV 1s infinite;
+}
+/* css背景动画 */
+@keyframes streamer {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+/* svg水平线条动画 */
+@keyframes linemoveH {
+  0% {
+    stroke-dasharray: 0px 276px;
+    stroke-dashoffset: -138px;
+  }
+  100% {
+    stroke-dasharray: 276px 276px;
+    stroke-dashoffset: 0px;
+  }
+}
+/* svg垂直线条动画 */
+@keyframes linemoveV {
+  0% {
+    stroke-dasharray: 0px 150px;
+    stroke-dashoffset: -75px;
+  }
+  100% {
+    stroke-dasharray: 150px 150px;
+    stroke-dashoffset: 0px;
+  }
+}
+/* layout */

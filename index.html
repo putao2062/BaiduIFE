@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>有趣的鼠标悬浮模糊效果</title>
+    <link rel="stylesheet" href="css/ife1_1.css">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+
+</head>
+
+<body>
+    <div class="wraper">
+        <article>
+            <h1>有趣的鼠标悬浮模糊效果</h1>
+            <section>
+                <h2>css3综合实现</h2>
+                <p>伪元素边框缩放实现线条动画、渐变背景位置移动实现流光字体、滤镜模糊图片（鼠标hover查看效果）</p>
+                <div>
+                    <img src="images/ife1_1_bg1.jpg" alt="">
+                    <div class="box">
+                        <p>欢迎参加百度前端技术学院</p>
+                        <p><a href="#">点击报名</a></p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>canvas实现</h2>
+                <p>canvas 动态画一条直线，动态清除一条直线，但画直线的动态效果只有一次，原因木有百度到啊....</p>
+                <div id="canvas" >
+                    <img src="images/ife1_1_bg1.jpg" alt="">
+                    <div class="box">
+                        <canvas id="streamline" width="276px" height="150px" >
+                           当前浏览器不支持canvas，请更换浏览器使用！
+                        </canvas>
+                        <p>欢迎参加百度前端技术学院</p>
+                        <p><a href="#">点击报名</a></p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>svg实现</h2>
+                <p>svg线条动画、渐变背景动图填充文字</p>
+                <div>
+                    <img src="images/ife1_1_bg1.jpg" alt="">
+                    <div class="box">
+                        <svg> 
+                    <!-- 线框 -->
+                          <path id="topline" d="M0 0 L276 0  " style="fill:white;stroke:#f9f2ed;stroke-width:8px" />
+                           <path id="leftline" d="M276 0 L276 150  " style="fill:white;stroke:#f9f2ed;stroke-width:2px" />
+                           <path id="bottomline" d="M276 150 L0 150  " style="fill:white;stroke:#f9f2ed;stroke-width:8px" />
+                           <path id="rightline" d="M0 150 L0 0  " style="fill:white;stroke:#f9f2ed;stroke-width:4px" />
+                   <!-- 渐变动图 -->
+                          <pattern id="pt-red_blue" viewBox="0 0 552 32" width="552" height="32" patternUnits="userSpaceOnUse">
+                               <image xlink:href="images/stream.gif" width="552" height="32"></image>
+                          </pattern>
+                   <!-- 线性渐变 用线性渐变做流光字体，没想出来怎么弄-->
+                           <defs>
+                            <linearGradient id="red_blue" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#d1528e;stop-opacity:1"/>
+                                <stop offset="50%" style="stop-color:#8eb5bf;stop-opacity:1"/>
+                                 <stop offset="100%" style="stop-color:#d1528e;stop-opacity:1"/>
+                             </linearGradient>
+                          </defs>
+                   <!-- 文字 -->
+                          <text x="10" y="60" fill="url(#pt-red_blue)" style="font-size:22px" >欢迎参加百度前端技术学院</text>
+                        </svg>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+    </div>
+</body>
+ <script src="js/ife1_1.js" type="text/javascript" charset="utf-8"></script>
+</html>
