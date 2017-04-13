@@ -1,0 +1,108 @@
+        /* 将input定位到label后面 浏览器不支持:checked伪类的时候可以正常显示*/
+        
+        .customWrap {
+            display: inline-block;
+            position: relative;
+            max-width: 200px;
+            /* ie7样式不支持inline-block; 用最大宽度加以限制*/
+        }
+        
+        .customWrap input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            visibility: visible;
+            /* 浏览器支持:checked伪类的时候再设置为不可见*/
+        }
+        /* 将input定位到label后面 结束*/
+        /* 背景图实现 */
+        
+        .custom input + label span {
+            display: inline-block;
+            height: 16px;
+            width: 16px;
+            vertical-align: middle;
+            visibility: hidden;
+            /* 浏览器支持:checked伪类的时候再设置为可见*/
+            background-image: url('../images/checkbg.png');
+            background-repeat: no-repeat;
+        }
+        
+        .customCheck input + label span {
+            background-position: -24px -32px;
+        }
+        
+        .customCheck input:checked + label span {
+            background-position: -59px -31px;
+        }
+        
+        .customRadio input + label span {
+            background-position: -24px -10px;
+        }
+        
+        .customRadio input:checked + label span {
+            background-position: -59px -10px;
+        }
+        /* 背景图实现 结束*/
+        /* 伪装元素 实现*/
+        
+        .custom2 input + label {
+            position: relative;
+            display: block;
+            padding-right: 16px;
+        }
+        
+        .customCheck2 input + label::after {
+            display: inline-block;
+            border-style: solid;
+            border-color: #ddd;
+            border-width: 1px;
+            width: 12px;
+            height: 12px;
+            content: '';
+            color: #ddd;
+            vertical-align: middle;
+        }
+        /* 伪元素旋转制作对勾 */
+        
+        .customCheck2 input + label::before {
+            display: block;
+            position: absolute;
+            right: 19px;
+            top: 9px;
+            border-style: solid;
+            border-color: #ddd;
+            border-width: 2px;
+            border-top: none;
+            border-right: none;
+            width: 6px;
+            height: 3px;
+            content: '';
+            transform: rotateZ(-45deg);
+        }
+        
+        .customCheck2 input:checked + label::after,
+        .customCheck2 input:checked + label::before {
+            color: #d73d32;
+            border-color: #d73d32;
+        }
+        /* 伪元素背景剪裁加边框制作点选按钮 */
+        
+        .customRadio2 input + label::after {
+            display: inline-block;
+            border-radius: 50%;
+            border: solid 1px #ddd;
+            padding: 4px;
+            width: 6px;
+            height: 6px;
+            content: '';
+            vertical-align: middle;
+            background-color: #ddd;
+            background-clip: content-box;
+        }
+        
+        .customRadio2 input:checked + label::after {
+            border: solid 1px #d73d32;
+            background-color: #d73d32;
+        }
+        /* 伪装元素 实现j结束*/
