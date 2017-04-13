@@ -1,0 +1,32 @@
+        #contentMenu {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            border: solid 1px #ddd;
+            border-radius: 10px;
+            padding: 5%;
+            width: 100%;
+            background: #eee;
+            text-align: center;
+        }
+        
+        #contentMenuTarget {
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: inline-block;
+            margin: 0;
+            border: solid 1px #eee;
+            border-radius: 10px;
+            padding: 10px;
+            background: #fff;
+            visibility: hidden;
+        }
+        
+        #contentMenuTarget li {
+            list-style: none;
+        }
+        
+        #contentMenuTarget li:hover {
+            cursor: pointer;
+        }
