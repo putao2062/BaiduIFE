@@ -37,7 +37,8 @@
     var phoneReg = /^1[3|4|5|8]\d{9}$/; //粗略匹配
     var phoneInfo = '';
     var msg = document.getElementById('phoneRes');
-    var wordReg = /(\b\w+\b)/g;
+        //（?:）非捕获分组
+    var wordReg = /\b\w+(?:-\w+)*\b/g;
     var strInfo = '';
     var msg2 = document.getElementById('strRes');
 
