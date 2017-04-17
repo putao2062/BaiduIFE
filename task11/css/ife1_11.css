@@ -1,0 +1,19 @@
+#edit {
+    display: inline-block;
+    vertical-align: top;
+    border-left: solid 1px #eee;
+    border-right: solid 1px black;
+    width: 40%;
+    min-height: 400px;
+}
+#show {
+    display: inline-block;
+    padding-left: 30px;
+    vertical-align: top;
+    border-right: solid 1px #eee;
+    width: 40%;
+    min-height: 400px;
+}
+li {
+    list-style-position: inside;
+}
