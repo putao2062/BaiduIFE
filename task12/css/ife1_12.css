@@ -1,0 +1,241 @@
+#loadingWrap {
+
+    /* 垂直水平居中 transform:translate(-50%, -50%)*/
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 54px;
+    height: 54px;
+    transform: translate(-50%, -50%);
+}
+#outerCircle {
+
+    /* 四分之三圆 */
+    border-style: solid;
+    border-color: #FF298C #FF298C #FF298C transparent;
+    border-width: 2px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: roll 1s linear infinite;            /* 速度曲线linear直线 不会出现停顿 */
+}
+#innerCircle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;            
+    background: #FB8BBD;/* 淡粉 */
+    overflow: hidden;
+    animation: changeColor 2s linear infinite;
+}
+.angle {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #FF298C;/* 玫红 */
+    transform-origin: right bottom;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+#angle1 {
+    animation-name: angleRoll1;
+    animation-delay: 0s;
+}
+#angle2 {
+    transform: rotateZ(-90deg);
+    animation-name: angleRoll2;
+    animation-delay: 0.25s;
+}
+#angle3 {
+    transform: rotateZ(-180deg);
+    animation-name: angleRoll3;
+    animation-delay: 0.5s;
+}
+#angle4 {
+    transform: rotateZ(-270deg);
+    animation-name: angleRoll4;
+    animation-delay: 0.75s;
+}
+/* 360度旋转 默认沿中心旋转*/
+@keyframes roll {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(-360deg);
+    }
+}
+@keyframes angleRoll1 {
+
+    /* 变形前 */
+    0% {
+        background: #FF298C;  /* 玫红 */
+        transform: skewX(0deg);
+    }
+    /* 变形后 */
+    12.5% {
+        background: #FF298C;
+        transform: skewX(90deg);
+    }
+
+    /* 改变颜色 恢复未变形前*/
+    12.501% {
+        background: #FB8BBD;  /* 粉红 */
+        transform: skewX(0deg);
+    }
+
+    /* 保持状态 变形前*/
+    50% {
+        background: #FB8BBD;
+        transform: skewX(0deg);
+    }
+    /* 变形后 */
+    62.5% {
+        background: #FB8BBD;
+        transform: skewX(90deg);
+    }
+
+    /* 改变颜色 恢复尺寸*/
+    62.501% {
+        background: #FF298C;
+        transform: skewX(0deg);
+    }
+    100% {
+        background: #FF298C;
+        transform: skewX(0deg);
+    }
+}
+@keyframes angleRoll2 {
+
+    /* 变形 */
+    0% {
+        background: #FF298C;
+        transform: rotateZ(-90deg) skewX(0deg);
+    }
+    12.5% {
+        background: #FF298C;
+        transform: rotateZ(-90deg) skewX(90deg);
+    }
+
+    /* 改变颜色 恢复尺寸*/
+    12.501% {
+        background: #FB8BBD;
+        transform: rotateZ(-90deg) skewX(0deg);
+    }
+
+    /* 保持状态 */
+    50% {
+        background: #FB8BBD;
+        transform: rotateZ(-90deg) skewX(0deg);
+    }
+    62.5% {
+        background: #FB8BBD;
+        transform: rotateZ(-90deg) skewX(90deg);
+    }
+
+    /* 改变颜色 恢复尺寸*/
+    62.501% {
+        background: #FF298C;
+        transform: rotateZ(-90deg) skewX(0deg);
+    }
+    100% {
+        background: #FF298C;
+        transform: rotateZ(-90deg) skewX(0deg);
+    }
+}
+@keyframes angleRoll3 {
+
+    /* 变形 */
+    0% {
+        background: #FF298C;
+        transform: rotateZ(-180deg) skewX(0deg);
+    }
+    12.5% {
+        background: #FF298C;
+        transform: rotateZ(-180deg) skewX(90deg);
+    }
+
+    /* 改变颜色 恢复尺寸*/
+    12.501% {
+        background: #FB8BBD;
+        transform: rotateZ(-180deg) skewX(0deg);
+    }
+
+    /* 保持状态 */
+    50% {
+        background: #FB8BBD;
+        transform: rotateZ(-180deg) skewX(0deg);
+    }
+    62.5% {
+        background: #FB8BBD;
+        transform: rotateZ(-180deg) skewX(90deg);
+    }
+
+    /* 改变颜色 恢复尺寸*/
+    62.501% {
+        background: #FF298C;
+        transform: rotateZ(-180deg) skewX(0deg);
+    }
+    100% {
+        background: #FF298C;
+        transform: rotateZ(-180deg) skewX(0deg);
+    }
+}
+@keyframes angleRoll4 {
+
+    /* 变形 */
+    0% {
+        background: #FF298C;
+        transform: rotateZ(-270deg) skewX(0deg);
+    }
+    12.5% {
+        background: #FF298C;
+        transform: rotateZ(-270deg) skewX(90deg);
+    }
+
+    /* 改变颜色 恢复尺寸*/
+    12.501% {
+        background: #FB8BBD;
+        transform: rotateZ(-270deg) skewX(0deg);
+    }
+
+    /* 保持状态 */
+    50% {
+        background: #FB8BBD;
+        transform: rotateZ(-270deg) skewX(0deg);
+    }
+    62.5% {
+        background: #FB8BBD;
+        transform: rotateZ(-270deg) skewX(90deg);
+    }
+
+    /* 改变颜色 恢复尺寸*/
+    62.501% {
+        background: #FF298C;
+        transform: rotateZ(-270deg) skewX(0deg);
+    }
+    100% {
+        background: #FF298C;
+        transform: rotateZ(-270deg) skewX(0deg);
+    }
+}
+@keyframes changeColor {
+    0% {
+        background: #FB8BBD;/* 粉红 */
+    }
+    49.99% {
+        background: #FB8BBD;/* 粉红 */
+    }
+    50% {
+        background: #FF298C; /* 玫红 */
+    }
+    100% {
+        background: #FF298C;/* 玫红 */
+    }
+}
