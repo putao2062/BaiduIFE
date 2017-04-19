@@ -1,0 +1,72 @@
+body {
+    background: #eee;
+}
+.sliderWrap {
+    perspective: 800px; /*舞台元素 景深 */
+    margin: 100px auto;
+    padding: 1px;/* 为了不让ul的margin-top被折叠 */
+    width: 800px;
+    height: 400px;
+    background: #fff;
+    position: relative;
+}
+.sliderWrap ul {
+    transform-style: preserve-3d;  /*容器元素 变换风格：保存3d  其子元素变换有3d效果*/
+    margin-top: 200px;
+    padding-left: 0px;
+    width: 800px;
+    height: 0px;/* 为了不让ul的内容区域挡住3d空间内位于ul后面的元素li ，导致后面的li捕获不到mouseover事件*/
+    animation: rotateUL 5s linear infinite;
+    transition: transform 1s linear;
+}
+.sliderWrap ul:hover {
+    animation: rotateUL 0s linear 1;
+}
+.sliderWrap ul li {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    list-style: none;
+    width: 300px;
+    height: 150px;
+    line-height: 50px;
+    text-align: center;
+}
+.sliderWrap ul li:hover {
+    cursor: pointer;
+}
+.sliderWrap li:nth-child(1) {
+    transform: rotateY(0deg) translateZ(300px);
+    background: red;
+}
+.sliderWrap li:nth-child(2) {
+    transform: rotateY(60deg) translateZ(300px);
+    background: orange;
+}
+.sliderWrap li:nth-child(3) {
+    transform: rotateY(120deg) translateZ(300px);
+    background: yellow;
+}
+.sliderWrap li:nth-child(4) {
+    transform: rotateY(180deg) translateZ(300px);
+    background: green;
+}
+.sliderWrap li:nth-child(5) {
+    transform: rotateY(240deg)translateZ(300px);
+    background: blue;
+}
+.sliderWrap li:nth-child(6) {
+    transform: rotateY(300deg) translateZ(300px);
+    background: purple;
+}
+@keyframes rotateUL {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
