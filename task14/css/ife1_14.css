@@ -1,0 +1,35 @@
+.node {
+    overflow: hidden;
+}
+.tree {
+    position: relative;
+}
+.close{
+    background: #eee;
+}
+.close:hover {
+    cursor: pointer;
+}
+.close::before {
+    position: absolute;
+    left: -24px;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    content: '+';
+    line-height: 16px;
+    background: #3388FF;
+    text-align: center;
+}
+.open::before {
+    content: '-';
+}
+.close+.node {
+    height: 0px;
+}
+.open + .node {
+    height: auto;
+}
+.node li {
+    list-style: none;
+}
