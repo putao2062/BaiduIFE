@@ -10,20 +10,24 @@
 </head>
 
 <body>
-    <div class="wraper">
-        <article>
-            <h1>正则表达式之简易markdown文件解析器</h1>
-            <div id="edit" contenteditable="true" >
 
-            </div>
-            <div id="show">
+    <h1 class="title">正则表达式之简易markdown文件解析器</h1>
+    <div class="boxwrap">
+        <div id="edit" contenteditable="true">
 
-            </div>
-        </article>
+        </div>
+        <div id="show">
+
+        </div>
     </div>
-
 </body>
 
 </html>
 <script src="js/ife1_11.js" type="text/javascript" charset="utf-8">
+</script>
+<script type="text/javascript">
+    new MarkDown({
+        editor: "#edit",
+        output: "#show"
+    });
 </script>
