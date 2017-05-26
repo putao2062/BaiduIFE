@@ -18,7 +18,7 @@ Animate.prototype.add = function(props, options) {
         easing: 'linear',
         loop: 1
     };
-    options=Tools.extend(defau, options);
+    options = Tools.extend(defau, options);
     this.queue.push({
         props: props,
         options: options
@@ -35,10 +35,12 @@ Animate.prototype.add = function(props, options) {
  * @param  {object} obj 属性键值对象
  * @return {array}     属性键值数组
  */
-function convertOTA(obj){
-    var arr=[];
-    for(var key in obj){
-        arr.push([key,obj[key]]);
+function convertOTA(obj) {
+    var arr = [];
+    for (var key in obj) {
+        var unit = typeof obj[key] == "string" ? obj[key].replace(/\d/g, '') : 0; //保存属性值的单位
+        var value = unit == 0 ? obj[key] : parseInt(obj[key].replace(unit, ''));
+        arr.push([key, value, unit]);
     }
     return arr;
 }
@@ -48,49 +50,48 @@ function convertOTA(obj){
  * @return {void}      返回null
  */
 Animate.prototype.animating = function(args) {
-    var _this=this;
+    var _this = this;
     //将属性键值对象转换成数组对象
-    var propArr=convertOTA(args.props);
-    var  oStyle = this.ele.currentStyle? this.ele.currentStyle : window.getComputedStyle(this.ele, null);
+    var propArr = convertOTA(args.props);
+    var oStyle = this.ele.currentStyle ? this.ele.currentStyle : window.getComputedStyle(this.ele, null);
     var t = 0,
-        b = [],  //保存各属性的初始值
-        c = [],  //保存各属性的差值
+        b = [], //保存各属性的初始值
+        c = [], //保存各属性的差值
         d = args.options.duration;
-    
-   
+
+
     // for (var key in args.props) {
     //     b=parseInt(oStyle[key].replace('px', ''));
     //     c = parseInt(args.props[key].replace('px', '')) - b;
     // }
     // 
-    propArr.forEach(function(x){
-    var base=parseInt(oStyle[x[0]].replace('px', ''));
-       b.push(base);
-       c.push(parseInt(x[1].replace('px', ''))-base);
+    propArr.forEach(function(x) {
+            var base = typeof oStyle[x[0]] == 'string' ? parseInt(oStyle[x[0]].match(/\d*/)[0] ): oStyle[x[0]];
+             b.push(base); c.push(x[1] - base);
     });
-    var step = function() {
+var step = function() {
 
-        var value=[]; //保存各属性的当前值
-        // var value = Tween.linear(t, b, c, d);
-        for (var i=0;i<b.length;i++) {
-            value.push(Tween.linear(t,b[i],c[i],d));
-        }
-        // _this.ele.style[key] = value+"px";
-        for(var j=0;j<propArr.length;j++){
+    var value = []; //保存各属性的当前值
+    // var value = Tween.linear(t, b, c, d);
+    for (var i = 0; i < b.length; i++) {
+        value.push(Tween.linear(t, b[i], c[i], d));
+    }
+    // _this.ele.style[key] = value+"px";
+    for (var j = 0; j < propArr.length; j++) {
 
-        _this.ele.style[propArr[j][0]] = value[j]+"px";
-        }
+        _this.ele.style[propArr[j][0]] = value[j] + propArr[j][2];
+    }
 
-        t++;
-        if (t <= d) {
-            // 继续运动
-            requestAnimationFrame(step);
-        } else {
-            // 动画结束
-        }
+    t++;
+    if (t <= d) {
+        // 继续运动
+        requestAnimationFrame(step);
+    } else {
+        // 动画结束
+    }
 
-    };
-    step();
+};
+step();
 };
 /**
  * 动画 弹出信息
@@ -155,7 +156,8 @@ function test() {
     ele.animate.msg('hahah');
     ele.animate.add({
         width: '500px',
-        height:'300px'
+        height: '300px',
+        opacity: 1
     }, {
         duration: 500,
         loop: 2
