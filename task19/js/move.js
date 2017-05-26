@@ -29,28 +29,58 @@ Animate.prototype.add = function(props, options) {
     });
     // body...
 };
+
+/**
+ * 把props属性对象按键值对转换成数组方便调用
+ * @param  {object} obj 属性键值对象
+ * @return {array}     属性键值数组
+ */
+function convertOTA(obj){
+    var arr=[];
+    for(var key in obj){
+        arr.push([key,obj[key]]);
+    }
+    return arr;
+}
 /**
  * [animating description]
  * @param  {object} args 动画队列项
  * @return {void}      返回null
  */
 Animate.prototype.animating = function(args) {
-	var _this=this;
+    var _this=this;
+    //将属性键值对象转换成数组对象
+    var propArr=convertOTA(args.props);
+    var  oStyle = this.ele.currentStyle? this.ele.currentStyle : window.getComputedStyle(this.ele, null);
     var t = 0,
-        b = 0,
-        c = 100,
+        b = [],  //保存各属性的初始值
+        c = [],  //保存各属性的差值
         d = args.options.duration;
-    for (var key in args.props) {
-        var  oStyle = this.ele.currentStyle? this.ele.currentStyle : window.getComputedStyle(this.ele, null);
-        // b=oStyle.getPropertyValue(key);
-        b=parseInt(oStyle[key].replace('px', ''));
-        c = parseInt(args.props[key].replace('px', '')) - b;
-    }
+    
+   
+    // for (var key in args.props) {
+    //     b=parseInt(oStyle[key].replace('px', ''));
+    //     c = parseInt(args.props[key].replace('px', '')) - b;
+    // }
+    // 
+    propArr.forEach(function(x){
+    var base=parseInt(oStyle[x[0]].replace('px', ''));
+       b.push(base);
+       c.push(parseInt(x[1].replace('px', ''))-base);
+    });
     var step = function() {
-        // value就是当前的位置值
-        // 例如我们可以设置DOM.style.left = value + 'px'实现定位
-        var value = Tween.linear(t, b, c, d);
-        _this.ele.style[key] = value+'px';
+
+        var value=[]; //保存各属性的当前值
+        // var value = Tween.linear(t, b, c, d);
+        for (var i=0;i<b.length;i++) {
+            value.push(Tween.linear(t,b[i],c[i],d));
+        }
+        // _this.ele.style[key] = value+"px";
+        for(var j=0;j<propArr.length;j++){
+
+        _this.ele.style[propArr[j][0]] = value[j]+"px";
+        }
+
         t++;
         if (t <= d) {
             // 继续运动
@@ -124,7 +154,8 @@ function test() {
     var ele = $('.m1 .item');
     ele.animate.msg('hahah');
     ele.animate.add({
-        width: '500px'
+        width: '500px',
+        height:'300px'
     }, {
         duration: 500,
         loop: 2
